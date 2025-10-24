@@ -1,0 +1,370 @@
+:root {
+  --navy: #19183b;
+  --dark-teal: #708993;
+  --teal: #a1c2bd;
+  --light-teal: #e7f2ef;
+  --ivory: #f5f5f5;
+  --text-color: #333333;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: var(--ivory);
+}
+
+html,
+body,
+#root,
+.appContainer {
+  margin: 0;
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.heading {
+  color: var(--navy);
+  text-align: center;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: white;
+  background-color: var(--navy);
+}
+.section {
+  display: grid;
+  grid-template-columns: 300px auto;
+  gap: 1rem;
+  flex: 1;
+  padding: 1rem;
+  align-items: start;
+}
+.newContainer {
+  border: 2px solid var(--dark-teal);
+  border-radius: 8px;
+  padding: 10px;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 13em;
+  height: 20em;
+}
+.imageContainer img {
+  width: 150px;
+}
+.bookContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+
+  align-items: center;
+  align-content: flex-start;
+  justify-content: space-between;
+}
+
+.bookList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+}
+
+.bookDetails {
+  position: relative;
+  border: 2px solid var(--dark-teal);
+  border-radius: 8px;
+  background-color: white;
+  padding: 10px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  justify-content: space-evenly;
+  width: 13em;
+  height: 20em;
+  flex-shrink: 0;
+  > button.deleteButton {
+    position: absolute;
+    display: inline-block;
+    align-self: flex-end;
+    background: var(--navy);
+    border: none;
+    border-radius: 0 6px 0 7px;
+    color: white;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    padding: 0.5em;
+  }
+}
+.title {
+  text-align: center;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.price {
+  text-align: center;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}
+
+.author {
+  text-align: center;
+  font-size: 0.8rem;
+  margin: 0.3rem 0;
+  color: var(--dark-teal);
+  font-style: italic;
+}
+
+.publisher {
+  text-align: center;
+  font-size: 0.75rem;
+  margin: 0.2rem 0;
+  color: var(--text-color);
+}
+
+/* Controls and Action Buttons */
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.editButton {
+  padding: 0.5rem 1rem;
+  background-color: var(--teal);
+  color: white;
+  border:none;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+.deleteButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: #dc3545;
+  color: white;
+}
+
+.deleteButton:hover:not(:disabled) {
+  background-color: #c82333;
+}
+
+.deleteButton:disabled {
+  background-color: #6c757d;
+  color: #adb5bd;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.viewDetailsButton {
+  background-color: var(--teal);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  width: 100%;
+  max-width: 120px;
+}
+
+.viewDetailsButton:hover {
+  background-color: var(--dark-teal);
+}
+
+.bookClicked {
+  background: var(--light-teal);
+  box-shadow: inset 0 0 20px var(--dark-teal);
+}
+
+.newContainer:hover {
+  background-color: var(--dark-teal);
+  color: white;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.8rem;
+  background-color: var(--navy);
+  color: white;
+  padding: 1em;
+  bottom: 0;
+}
+
+/* Dialog styling */
+
+#addBookDialog {
+  border: 2px solid var(--dark-teal);
+  border-radius: 8px;
+  background-color: var(--ivory);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 90vw;
+
+  max-height: 90vh;
+  overflow: visible;
+}
+
+.formLabel {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--navy);
+  background-color: var(--light-teal);
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin: -1rem -1rem 1rem -1rem;
+}
+
+#addBookForm {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+#addBookForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-weight: 500;
+  color: var(--navy);
+  font-size: 0.85rem;
+}
+
+#addBookForm input {
+  padding: 0.5rem;
+  border: 1px solid var(--teal);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background-color: white;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+  height: 25px;
+  width: 400px;
+}
+
+#addBookForm input:focus {
+  outline: none;
+  border-color: var(--dark-teal);
+  box-shadow: 0 0 0 3px rgba(112, 137, 147, 0.2);
+  background-color: var(--light-teal);
+}
+
+#addBookForm input::placeholder {
+  color: var(--dark-teal);
+  opacity: 0.7;
+}
+
+.formButtons {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.addBookButton {
+  background-color: var(--dark-teal);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.closeButton {
+  background-color: var(--ivory);
+  color: var(--text-color);
+  border: 1px solid var(--dark-teal);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.addBookButton:hover {
+  background-color: var(--navy);
+}
+
+dialog::backdrop {
+  background: rgba(25, 24, 59, 0.6);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+/* Preview Section Styling */
+.previewSection {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: white;
+  border: 2px solid var(--teal);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.previewSection h4 {
+  color: var(--navy);
+  text-align: center;
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  border-bottom: 1px solid var(--teal);
+  padding-bottom: 0.5rem;
+}
+
+.bookPreview {
+  display: flex;
+  justify-content: center;
+}
+
+.bookPreview .bookDetails {
+  width: 12em;
+  height: 18em;
+  background-color: var(--light-teal);
+  border: 2px solid var(--dark-teal);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.bookPreview .imageContainer img {
+  width: 120px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.bookPreview .title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--navy);
+  margin: 0.3rem 0;
+}
+
+.bookPreview .author {
+  font-size: 0.8rem;
+  color: var(--dark-teal);
+  margin: 0.2rem 0;
+  font-style: italic;
+}
+
+.bookPreview .publisher {
+  font-size: 0.75rem;
+  color: var(--text-color);
+  margin: 0.2rem 0;
+}
+
+
