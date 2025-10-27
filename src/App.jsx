@@ -59,9 +59,47 @@ function App() {
     setEditingBookId(null);
   }
 
+  const [filter, setFilter] = useState('all');
+  
+  const categories = [...new Set(books.map(book => book.category).filter(Boolean))];
+  
+  const getDisplayedBooks = () => {
+    let filtered = [...books];
+    
+    switch(filter) {
+      case 'all':
+        return filtered;
+      case 'authorA-Z':
+        return filtered.sort((a, b) => (a.author || '').localeCompare(b.author || ''));
+      case 'authorZ-A':
+        return filtered.sort((a, b) => (b.author || '').localeCompare(a.author || ''));
+      case 'titleA-Z':
+        return filtered.sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+      case 'titleZ-A':
+        return filtered.sort((a, b) => (b.title || '').localeCompare(a.title || ''));
+      default:
+        return filtered.filter(book => book.category === filter);
+    }
+  };
+  
+  const displayedBooks = getDisplayedBooks();  
+
   return (
     <div className="appContainer">
       <Header />
+        <div className="filterContainer">
+          <p>Filter</p>
+          <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+            <option value="all">All</option>
+            <option value="authorA-Z">Author A-Z</option>
+            <option value="authorZ-A">Author Z-A</option>
+            <option value="titleA-Z">Title A-Z</option>
+            <option value="titleZ-A">Title Z-A</option>
+            {categories.map((category, index) => (
+              <option key={index} value={category}>{category}</option>
+            ))}
+          </select>
+        </div>
       <main className="section">
         <div className="controls">
           <AddingNew
@@ -91,7 +129,7 @@ function App() {
         </div>
         <div className="bookContainer">
           <div className="bookList">
-            {books.map((book, index) => (
+            {displayedBooks.map((book, index) => (
               <Book
                 key={book.isbn13 || book.id || index}
                 book={book}
